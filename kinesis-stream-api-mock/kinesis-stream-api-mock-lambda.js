@@ -3,7 +3,8 @@ const kinesis = new AWS.Kinesis();
 exports.handler = function (event, context, callback) {
 
     kinesis.describeStream({
-        StreamName: 'kinesis-sample-stream'
+        StreamName: 'kinesis-sample-stream',
+        ExclusiveStartShardId: 'shardId-000000000000'
     }).promise()
         .then(describeStreamData => {
             callback(null, describeStreamData);
@@ -11,5 +12,5 @@ exports.handler = function (event, context, callback) {
         .catch(err => {
             callback(err, 'Error in executing Kinesis#describeStream');
         });
-        
+
 }
