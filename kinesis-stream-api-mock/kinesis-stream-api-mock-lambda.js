@@ -4,7 +4,7 @@ exports.handler = function (event, context, callback) {
 
 	kinesis.describeStream({
 		StreamName: 'sample-kinesis-stream',
-		ExclusiveStartShardId: 'shardId-000000000001'
+		ExclusiveStartShardId: 'shardId-000000000000'
 	}).promise()
 		.then(describeStreamData => {
 			callback(null, describeStreamData);
