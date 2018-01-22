@@ -15,6 +15,4 @@ exports.handler = function (event, context, callback) {
 		.catch(err => {
 			callback(err, 'Error in executing Kinesis#describeStream');
 		});
-
-	callback(null, 'Successfully executed');
 }
