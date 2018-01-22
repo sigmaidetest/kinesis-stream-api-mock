@@ -6,11 +6,7 @@ exports.handler = function (event, context, callback) {
 		StreamName: 'sample-kinesis-stream'
 	}).promise()
 		.then(describeStreamData => {
-			callback(null, {
-				'statusCode': 200,
-				'body': JSON.stringify('Stream', describeStreamData),
-				'isBase64Encoded': false
-			});
+			callback(null, describeStreamData);
 		})
 		.catch(err => {
 			callback(err, 'Error in executing Kinesis#describeStream');
