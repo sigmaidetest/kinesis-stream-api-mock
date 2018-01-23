@@ -10,7 +10,10 @@ exports.handler = function (event, context, callback) {
         .then(putRecordData => {
             callback(null, {
                 'statusCode': 200,
-                'body': putRecordData,
+                'body': JSON.stringify({
+                    'Message': 'Successfully put record',
+                    'Response': putRecordData
+                }),
                 'isBase64Encoded': false
             });
         })
