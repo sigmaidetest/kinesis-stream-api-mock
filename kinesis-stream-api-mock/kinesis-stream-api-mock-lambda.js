@@ -1,16 +1,18 @@
 let AWS = require('aws-sdk');
 const kinesis = new AWS.Kinesis();
 exports.handler = function (event, context, callback) {
+    const body = JSON.stringify(event.body);
 
-    kinesis.describeStream({
-        StreamName: 'kinesis-sample-stream',
-        ExclusiveStartShardId: 'shardId-000000000000'
+    kinesis.putRecord({
+        Data: body,
+        PartitionKey: '0',
+        StreamName: 'kinesis-sample-stream'
     }).promise()
-        .then(describeStreamData => {
-            callback(null, describeStreamData);
+        .then(putRecordData => {
+            callback(null, putRecordData);
         })
         .catch(err => {
-            callback(err, 'Error in executing Kinesis#describeStream');
+            callback(err, 'Error in executing Kinesis#putRecord');
         });
-        
+
 }
