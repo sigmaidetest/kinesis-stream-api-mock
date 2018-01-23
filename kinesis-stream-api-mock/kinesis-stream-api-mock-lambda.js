@@ -9,7 +9,11 @@ exports.handler = function (event, context, callback) {
         StreamName: 'kinesis-sample-stream'
     }).promise()
         .then(putRecordData => {
-            callback(null, putRecordData);
+            callback(null, {
+                'statusCode': 200,
+                'body': 'Successfully put record',
+                'isBase64Encoded': false
+            });
         })
         .catch(err => {
             callback(err, 'Error in executing Kinesis#putRecord');
