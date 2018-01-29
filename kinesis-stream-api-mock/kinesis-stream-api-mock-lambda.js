@@ -5,7 +5,7 @@ exports.handler = function (event, context, callback) {
     kinesis.putRecord({
         Data: event.body,
         PartitionKey: '0',
-        StreamName: 'kinesis-sample-stream'
+        StreamName: 'existing-stream'
     }).promise()
         .then(putRecordData => {
             callback(null, {
